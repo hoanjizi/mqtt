@@ -55,12 +55,12 @@ class FragmentReceiveData : Fragment() {
         }
 
         btnTopicRead?.let { text ->
-            activity?.let { home ->
-                (home as HomeActivity).closeDrawer()
-                hideKeyBoard(home)
-            }
-
             text.setOnClickListener {
+                activity?.let { home ->
+                    (home as HomeActivity).closeDrawer()
+                    hideKeyBoard(home)
+                }
+
                 mqttClient?.let { mqtt ->
                     try {
                             val topicRead = edtTopicRead?.text.toString()

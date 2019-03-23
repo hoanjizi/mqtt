@@ -8,7 +8,10 @@ object FragmentUtil {
     const val fragmentReceive: String = "FRAGMENT_REVEIVE"
 }
 
+@Suppress("RECEIVER_NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
 fun hideKeyBoard(activity: Activity) {
-    val imm = activity!!.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
-    imm.hideSoftInputFromWindow(activity.currentFocus.windowToken,0)
+    val imm = activity.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+    activity.currentFocus?.let {
+        imm.hideSoftInputFromWindow(activity.currentFocus.windowToken,0)
+    }
 }
