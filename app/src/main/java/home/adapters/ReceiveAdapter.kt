@@ -15,10 +15,17 @@ class ReceiveAdapter : RecyclerView.Adapter<ReceiveAdapter.ReceiveHolder>() {
     private var receives = Collections.emptyList<ReceiveData>()
 
     override fun onCreateViewHolder(parent: ViewGroup, p1: Int): ReceiveHolder {
-        return ReceiveHolder(DataBindingUtil.inflate(LayoutInflater.from(parent.context), R.layout.item_receive_data, parent, false))
+        return ReceiveHolder(
+            DataBindingUtil.inflate(
+                LayoutInflater.from(parent.context),
+                R.layout.item_receive_data,
+                parent,
+                false
+            )
+        )
     }
 
-    override fun getItemCount(): Int  = receives.size
+    override fun getItemCount(): Int = receives.size
 
     override fun onBindViewHolder(holder: ReceiveHolder, p: Int) {
         holder.binding(receives[p])
@@ -35,7 +42,8 @@ class ReceiveAdapter : RecyclerView.Adapter<ReceiveAdapter.ReceiveHolder>() {
         notifyDataSetChanged()
     }
 
-    class ReceiveHolder(itemReceiveDataBinding: ItemReceiveDataBinding) : RecyclerView.ViewHolder(itemReceiveDataBinding.root) {
+    class ReceiveHolder(itemReceiveDataBinding: ItemReceiveDataBinding) :
+        RecyclerView.ViewHolder(itemReceiveDataBinding.root) {
         private val item = itemReceiveDataBinding
         fun binding(receiveData: ReceiveData) {
             if (item.itemReceive == null) {

@@ -23,8 +23,8 @@ import utils.hideKeyBoard
 
 class FragmentReceiveData : Fragment() {
     var mqttClient: MqttAndroidClient? = null
-    private var edtTopicRead : EditText? = null
-    private var btnTopicRead : TextView? = null
+    private var edtTopicRead: EditText? = null
+    private var btnTopicRead: TextView? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_receive_data, container, false)
@@ -63,7 +63,7 @@ class FragmentReceiveData : Fragment() {
 
                 mqttClient?.let { mqtt ->
                     try {
-                            val topicRead = edtTopicRead?.text.toString()
+                        val topicRead = edtTopicRead?.text.toString()
                         mqtt.subscribe(topicRead, 0, null, object : IMqttActionListener {
                             override fun onSuccess(asyncActionToken: IMqttToken?) {
                                 txtShowSub.text = getString(R.string.topic_connected)

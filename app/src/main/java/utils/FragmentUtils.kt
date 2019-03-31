@@ -2,7 +2,9 @@ package utils
 
 import android.app.Activity
 import android.view.inputmethod.InputMethodManager
+import home.databases.HistoryViewModel
 
+lateinit var dataLocalRoom: HistoryViewModel
 object FragmentUtil {
     const val fragmentLogin: String = "FRAGMENT_LOGIN"
     const val fragmentReceive: String = "FRAGMENT_REVEIVE"

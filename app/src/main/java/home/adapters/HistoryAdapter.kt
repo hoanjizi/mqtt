@@ -14,7 +14,14 @@ class HistoryAdapter : RecyclerView.Adapter<HistoryAdapter.HistoryHolder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, position: Int): HistoryHolder =
-            HistoryHolder(DataBindingUtil.inflate(LayoutInflater.from(parent.context), R.layout.item_history, parent, false))
+        HistoryHolder(
+            DataBindingUtil.inflate(
+                LayoutInflater.from(parent.context),
+                R.layout.item_history,
+                parent,
+                false
+            )
+        )
 
     override fun getItemCount(): Int = historys.size
 

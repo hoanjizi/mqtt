@@ -1,28 +1,27 @@
 package home.databases
 
 import android.app.Application
-import home.datas.DaoHistory
+import android.arch.lifecycle.AndroidViewModel
+import android.arch.lifecycle.LiveData
 import home.datas.HistoryData
 
-class HistoryViewModel(app: Application) {
-    private val db = DatabaseMqtt.getInstance(app)
-    private var daoHusky: DaoHistory? = null
+class HistoryViewModel(app: Application) : AndroidViewModel(app) {
+    private var historyRepository: HistoryRepository? = null
 
     init {
-        daoHusky = db!!.historyDao()
+        historyRepository = HistoryRepository(app)
     }
 
-    suspend fun getAllHusky(): List<HistoryData>? {
-        return if (daoHusky != null) {
-            daoHusky!!.getHistoryList()
-        } else {
-            null
-        }
+    fun insert(husky: HistoryData) {
+        historyRepository!!.insertHistory(husky)
     }
-    fun insert(husky: HistoryData){
 
+    fun getAllHistory(): LiveData<List<HistoryData>>? {
+        return historyRepository!!.getAllHistory()
     }
-    fun deleteAllTable(){
+
+    fun deleteAllTable() {
+        historyRepository!!.deleteAllTable()
     }
 
 }
