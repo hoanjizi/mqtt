@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:alpha="0.7"
+    android:background="@drawable/gradient_recive"
     android:layout_height="match_parent">
     <android.support.v7.widget.RecyclerView
+        android:alpha="0.4"
+        android:background="#6a6b6d"
         android:id="@+id/rvHistory"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>

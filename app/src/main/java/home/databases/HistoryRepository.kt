@@ -18,7 +18,7 @@ class HistoryRepository(app : Application) {
         }
     }
     fun insertHistory(history : HistoryData) {
-        InsertAsyncTask(daoHistory!!).execute()
+        InsertAsyncTask(daoHistory!!).execute(history)
     }
 
     fun deleteAllTable(){

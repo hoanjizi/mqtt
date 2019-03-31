@@ -41,4 +41,25 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edtTopicRead" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="@string/topic_read"
+        android:layout_marginBottom="15dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/viewAllHistory" />
+    <TextView
+        android:id="@+id/viewAllHistory"
+        app:layout_constraintTop_toBottomOf="@id/btnTopicRead"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="80dp"
+        android:background="#11000000"
+        android:padding="10dp"
+        android:gravity="center"
+        android:text="@string/view_all_history"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content" />
+
 </android.support.constraint.ConstraintLayout>

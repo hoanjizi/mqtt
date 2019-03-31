@@ -12,6 +12,7 @@ import android.view.WindowManager
 import chinh.pham.mqtt.R
 import home.databases.HistoryViewModel
 import home.fragments.FragmentLogin
+import home.fragments.FragmentReceiveData
 import kotlinx.android.synthetic.main.activity_home.*
 import utils.FragmentUtil
 import utils.dataLocalRoom
@@ -34,7 +35,24 @@ class HomeActivity : AppCompatActivity() {
     fun loadFragment(fragment: Fragment, tag: String) {
         val fragmentTransaction = supportFragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.fragmentMain, fragment, tag)
+        FragmentUtil.fragmentStack = tag
         fragmentTransaction.commitAllowingStateLoss()
+    }
+
+    fun onReplaceFragmentWithHistoryEvent( fragmentCurrentStr: String, newFragmentStr: String, newFragment: Fragment) {
+        val newFrag: Fragment? = supportFragmentManager.findFragmentByTag(newFragmentStr)
+        val currentFrag: Fragment? = supportFragmentManager.findFragmentByTag(fragmentCurrentStr)
+        val ft = supportFragmentManager.beginTransaction()
+        if (newFrag == null && currentFrag != null) {
+            ft.add(R.id.fragmentMain, newFragment, newFragmentStr)
+            ft.hide(currentFrag)
+
+        } else {
+            ft.show(newFrag!!)
+            ft.hide(currentFrag!!)
+        }
+        FragmentUtil.fragmentStack = newFragmentStr
+        ft.commit()
     }
 
     fun lockDrawer() {
@@ -55,6 +73,10 @@ class HomeActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-
+        when(FragmentUtil.fragmentStack) {
+            FragmentUtil.fragmentHistory -> {
+                loadFragment(FragmentReceiveData(),FragmentUtil.fragmentReceive)
+            }
+        }
     }
 }

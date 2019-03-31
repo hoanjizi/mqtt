@@ -1,5 +1,6 @@
 package home.fragments
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
@@ -13,18 +14,24 @@ import chinh.pham.mqtt.R
 import com.google.gson.Gson
 import home.HomeActivity
 import home.adapters.ReceiveAdapter
+import home.datas.HistoryData
 import home.datas.ReceiveData
 import kotlinx.android.synthetic.main.fragment_receive_data.*
 import org.eclipse.paho.android.service.MqttAndroidClient
 import org.eclipse.paho.client.mqttv3.IMqttActionListener
 import org.eclipse.paho.client.mqttv3.IMqttToken
 import org.eclipse.paho.client.mqttv3.MqttException
+import utils.FragmentUtil
+import utils.dataLocalRoom
 import utils.hideKeyBoard
+import java.text.SimpleDateFormat
+import java.util.*
 
 class FragmentReceiveData : Fragment() {
     var mqttClient: MqttAndroidClient? = null
     private var edtTopicRead: EditText? = null
     private var btnTopicRead: TextView? = null
+    private var btnViewHistory: TextView? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_receive_data, container, false)
@@ -36,6 +43,7 @@ class FragmentReceiveData : Fragment() {
             (it as HomeActivity).unLockDrawer()
             btnTopicRead = it.findViewById(R.id.btnTopicRead)
             edtTopicRead = it.findViewById(R.id.edtTopicRead)
+            btnViewHistory = it.findViewById(R.id.viewAllHistory)
         }
         val adapter = ReceiveAdapter()
         val gson = Gson()
@@ -51,6 +59,15 @@ class FragmentReceiveData : Fragment() {
         showDrawer.setOnClickListener {
             activity?.let {
                 (it as HomeActivity).openDrawer()
+            }
+        }
+        btnViewHistory?.let { btn ->
+            btn.setOnClickListener {
+                activity?.let {
+                    (it as HomeActivity).onReplaceFragmentWithHistoryEvent(FragmentUtil.fragmentReceive,
+                            FragmentUtil.fragmentHistory,FragmentHistory())
+                    it.closeDrawer()
+                }
             }
         }
 
@@ -75,6 +92,7 @@ class FragmentReceiveData : Fragment() {
                                         val receiveData = gson.fromJson(message.toString(), ReceiveData::class.java)
                                         it.runOnUiThread {
                                             adapter.addListReceive(receiveData)
+                                            saveData(receiveData)
                                         }
                                     }
 
@@ -97,5 +115,16 @@ class FragmentReceiveData : Fragment() {
             }
         }
 
+    }
+
+    @SuppressLint("SimpleDateFormat")
+    private fun saveData(receiveData : ReceiveData) {
+        val df = SimpleDateFormat("dd MM yyyy 'at' HH:mm:ss")
+        val time = df.format(Calendar.getInstance().time)
+        val historyData = HistoryData(0,time,receiveData.nhietDo,receiveData.doAm,
+            receiveData.gas,receiveData.camBienHongNgoai,receiveData.camBienTuCua,
+            receiveData.den,receiveData.quat,receiveData.vanTu, receiveData.coiBao
+            )
+        dataLocalRoom.insert(historyData)
     }
 }

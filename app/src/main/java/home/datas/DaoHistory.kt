@@ -14,6 +14,6 @@ interface DaoHistory {
     @Query("DELETE FROM HistoryTable")
     fun deleteAll()
 
-    @Query("SELECT * FROM HistoryTable")
+    @Query("SELECT * FROM HistoryTable ORDER BY dateTime DESC")
     fun getHistoryList(): LiveData<List<HistoryData>>?
 }

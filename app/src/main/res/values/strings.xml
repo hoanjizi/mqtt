@@ -11,4 +11,5 @@
     <string name="topic_read">Topic Read</string>
     <string name="connect_topic_read">Connect Topic Read</string>
     <string name="topic">Topic</string>
+    <string name="view_all_history">View All History</string>
 </resources>
