@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentActivity
 import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.AppCompatActivity
 import android.view.Gravity
+import android.view.View
 import android.view.Window
 import android.view.WindowManager
 import chinh.pham.mqtt.R
@@ -14,11 +15,12 @@ import home.databases.HistoryViewModel
 import home.fragments.FragmentLogin
 import home.fragments.FragmentReceiveData
 import kotlinx.android.synthetic.main.activity_home.*
+import utils.ClickInterface
 import utils.FragmentUtil
 import utils.dataLocalRoom
 
 class HomeActivity : AppCompatActivity() {
-
+    var xmlClick: ClickInterface? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         requestWindowFeature(Window.FEATURE_NO_TITLE)
@@ -67,6 +69,11 @@ class HomeActivity : AppCompatActivity() {
     fun openDrawer() {
         drawerPaneParent.openDrawer(Gravity.START)
     }
+    fun onClickRBtn(view: View) {
+        xmlClick?.let {
+            it.onClickRbtn(view)
+        }
+    }
 
     fun closeDrawer() {
         drawerPaneParent.closeDrawer(drawerPane)
@@ -75,7 +82,13 @@ class HomeActivity : AppCompatActivity() {
     override fun onBackPressed() {
         when(FragmentUtil.fragmentStack) {
             FragmentUtil.fragmentHistory -> {
-                loadFragment(FragmentReceiveData(),FragmentUtil.fragmentReceive)
+                onReplaceFragmentWithHistoryEvent(FragmentUtil.fragmentHistory,FragmentUtil.fragmentReceive,FragmentReceiveData())
+            }
+            FragmentUtil.fragmentSendData ->{
+                onReplaceFragmentWithHistoryEvent(FragmentUtil.fragmentSendData,FragmentUtil.fragmentReceive,FragmentReceiveData())
+            }
+            else ->{
+                finish()
             }
         }
     }

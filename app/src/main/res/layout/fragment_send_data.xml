@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient">
+
+    <EditText
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.1"
+        android:id="@+id/edtTopicWrite"
+        android:layout_width="250dp"
+        android:layout_height="40dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="35dp"
+        android:background="#11000000"
+        android:ems="10"
+        android:hint="@string/port"
+        android:inputType="textPersonName"
+        android:text="viet"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/txtDen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/den"
+        android:textSize="23dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.2" />
+
+    <RadioGroup
+        android:id="@+id/toggle"
+        android:layout_width="250dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="23dp"
+        android:background="@drawable/pink_out_line"
+        android:checkedButton="@+id/offDen"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/txtDen"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.2">
+
+        <RadioButton
+            android:id="@+id/onDen"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="1dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginBottom="1dp"
+            android:layout_weight="1"
+            android:background="@drawable/toggle_bg"
+            android:button="@null"
+            android:gravity="center"
+            android:text="ON"
+            android:onClick="onClickRBtn"
+            android:textColor="@android:color/white" />
+
+        <RadioButton
+            android:id="@+id/offDen"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="1dp"
+            android:layout_marginRight="1dp"
+            android:layout_marginBottom="1dp"
+            android:layout_weight="1"
+            android:background="@drawable/toggle_bg"
+            android:button="@null"
+            android:gravity="center"
+            android:onClick="onClickRBtn"
+            android:text="Off"
+            android:textColor="@android:color/white" />
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/txtQuat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Quạt"
+        android:textSize="23dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.3" />
+
+    <RadioGroup
+        android:id="@+id/toggleQuat"
+        android:layout_width="250dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="23dp"
+        android:background="@drawable/pink_out_line"
+        android:checkedButton="@+id/onQuat"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/txtDen"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.3">
+
+        <RadioButton
+            android:id="@+id/onQuat"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="1dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginBottom="1dp"
+            android:layout_weight="1"
+            android:background="@drawable/toggle_bg"
+            android:button="@null"
+            android:gravity="center"
+            android:text="ON"
+            android:onClick="onClickRBtn"
+            android:textColor="@android:color/white" />
+
+        <RadioButton
+            android:id="@+id/offQuat"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="1dp"
+            android:layout_marginRight="1dp"
+            android:layout_marginBottom="1dp"
+            android:layout_weight="1"
+            android:background="@drawable/toggle_bg"
+            android:button="@null"
+            android:gravity="center"
+            android:text="Off"
+            android:onClick="onClickRBtn"
+            android:textColor="@android:color/white" />
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/txtBom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bơm"
+        android:textSize="23dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.4" />
+
+    <RadioGroup
+        android:id="@+id/toggleBom"
+        android:layout_width="250dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="23dp"
+        android:background="@drawable/pink_out_line"
+        android:checkedButton="@+id/onBom"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/txtDen"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.4">
+
+        <RadioButton
+            android:id="@+id/onBom"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="1dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginBottom="1dp"
+            android:layout_weight="1"
+            android:background="@drawable/toggle_bg"
+            android:button="@null"
+            android:gravity="center"
+            android:text="ON"
+            android:onClick="onClickRBtn"
+            android:textColor="@android:color/white" />
+
+        <RadioButton
+            android:id="@+id/offBom"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="1dp"
+            android:layout_marginRight="1dp"
+            android:layout_marginBottom="1dp"
+            android:layout_weight="1"
+            android:background="@drawable/toggle_bg"
+            android:button="@null"
+            android:gravity="center"
+            android:text="Off"
+            android:onClick="onClickRBtn"
+            android:textColor="@android:color/white" />
+    </RadioGroup>
+
+
+</android.support.constraint.ConstraintLayout>

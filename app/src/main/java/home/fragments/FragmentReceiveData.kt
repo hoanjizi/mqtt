@@ -70,6 +70,15 @@ class FragmentReceiveData : Fragment() {
                 }
             }
         }
+        btnSendData.setOnClickListener {
+            activity?.let { home ->
+                val sendFragment = FragmentSendData()
+                sendFragment.mqttClient = mqttClient
+                (home as HomeActivity).xmlClick = sendFragment
+                home.onReplaceFragmentWithHistoryEvent(FragmentUtil.fragmentReceive,FragmentUtil.fragmentSendData,sendFragment)
+
+            }
+        }
 
         btnTopicRead?.let { text ->
             text.setOnClickListener {
